@@ -4,7 +4,8 @@
 .vscode
 ### dotenv ###
 .env
-
+.github
+.idea
 ### macOS ###
 # General
 .DS_Store

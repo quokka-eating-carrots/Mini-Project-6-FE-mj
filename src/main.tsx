@@ -1,57 +1,108 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import App from './App';
-import CartNLikesPage from './pages/CartNLikesPage';
-import LoanDetailPage from './pages/LoanDetailPage';
-import MainPage from './pages/MainPage';
-import Mypage from './pages/MyPage';
-import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
-import UserInfoPage from './pages/UserInfoPage';
-import UserLonaPage from './pages/UserLoanPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';
+import { Provider } from 'react-redux';
+import { persistor, store } from './app/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import Loading from './pages/LoadingPage';
+import NotFound from './pages/NotFound';
+import { token } from './api/core/api';
 
+const App = React.lazy(() => import('./App'));
+const MainPage = React.lazy(() => import('./pages/MainPage'));
+const MyPage = React.lazy(() => import('./pages/MyPage'));
+const CartNLikesPage = React.lazy(() => import('./pages/CartNLikesPage'));
+const UserInfoPage = React.lazy(() => import('./pages/UserInfoPage'));
+const UserLoanPage = React.lazy(() => import('./pages/UserLoanPage'));
+const ProductDetail = React.lazy(() => import('./pages/ProductDetail'));
+const SignUpPage = React.lazy(() => import('./pages/SignUpPage'));
+const SignInPage = React.lazy(() => import('./pages/SignInPage'));
+const PasswordCheck = React.lazy(
+  () => import('./pages/UserInfoPage/PasswordCheck'),
+);
+const AllProduct = React.lazy(() => import('./pages/allProduct'));
+const CategoryPage = React.lazy(() => import('./pages/CategoryPage'));
+const SearchPage = React.lazy(() => import('./pages/SearchPage'));
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: Infinity,
+    },
+  },
+});
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
       {
+        path: '*',
+        element: <NotFound />,
+      },
+      {
         path: '/',
         element: <MainPage />,
       },
       {
         path: '/mypage',
-        element: <Mypage />,
-      },
-      {
-        path: '/signup',
-        element: <SignUpPage />,
+        element: <MyPage />,
       },
       {
         path: '/signin',
         element: <SignInPage />,
       },
       {
+        path: '/signup',
+        element: <SignUpPage />,
+      },
+      {
         path: '/userinfo',
         element: <UserInfoPage />,
       },
       {
-        path: '/userloan',
-        element: <UserLonaPage />,
+        path: '/userinfo/pwcheck',
+        element: <PasswordCheck />,
       },
       {
-        path: '/detail/:loanId',
-        element: <LoanDetailPage />,
+        path: '/userloan/:loanId',
+        element: <UserLoanPage />,
+      },
+      {
+        path: '/product/:snq',
+        element: <ProductDetail />,
       },
       {
         path: '/cart',
         element: <CartNLikesPage />,
       },
+      {
+        path: '/allproduct',
+        element: <AllProduct />,
+      },
+      {
+        path: '/category/:select',
+        element: <CategoryPage />,
+      },
+      {
+        path: '/search/:keyword',
+        element: <SearchPage />,
+      },
     ],
   },
+  {},
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <RouterProvider router={router} />,
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <React.Suspense fallback={<Loading />}>
+          <RouterProvider router={router} />
+        </React.Suspense>
+      </PersistGate>
+    </Provider>
+  </QueryClientProvider>,
 );
