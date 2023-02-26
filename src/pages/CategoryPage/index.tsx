@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ListBox from '../../components/MainPage/ListBox';
 import { CategoryData, getCategoryList } from '../../api/axios';
 import { useLocation } from 'react-router-dom';
@@ -12,6 +12,7 @@ const CategoryPage = () => {
   const [categoryItem, setCategoryItem] = useState<Array<CategoryData>>([]);
   const [page, setPage] = useState(1);
   const [totalItem, setTotalItem] = useState(0);
+
   const handlePageChange = (page: number) => {
     setPage(page);
   };

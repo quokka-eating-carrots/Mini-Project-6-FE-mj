@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getKeywordSearch } from '../../api/axios';
 import ListBox from '../../components/MainPage/ListBox';
@@ -13,6 +13,7 @@ const SearchPage = () => {
   const [searchResult, setSearchResult] = useState<Array<CategoryData>>([]);
   const [page, setPage] = useState<number>(1);
   const [totalItem, setTotalItem] = useState<number>(1);
+
   const handlePageChange = (page: number) => {
     setPage(page);
   };
@@ -23,7 +24,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { ok, searchData } = await getKeywordSearch(keyword, 1);
+      const { ok, searchData } = await getKeywordSearch(keyword, page);
       setSearchResult(searchData.content);
       setTotalItem(searchData.totalElements);
     };

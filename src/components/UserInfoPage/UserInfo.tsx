@@ -12,15 +12,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {};
-
 interface IvalidationForm {
   phone: string;
   password: string;
   newPassword: string;
 }
 
-const UserInfo = (props: Props) => {
+const UserInfo = () => {
   const [userInfoData, setUserInfoData] = useState<UserInfoType | null>(null);
 
   useEffect(() => {
@@ -33,26 +31,15 @@ const UserInfo = (props: Props) => {
 
   const navigate = useNavigate();
 
-  const notify = () =>
-    toast.success('정보를 수정하였습니다.', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-
   const onSubmit = async (data: FieldValues) => {
     const { phone, newPassword, password } = data;
-    const { ok } = await checkUser(password).then(() =>
-      changeUserInfo(phone, newPassword),
-    );
+    const { ok } = await checkUser(password);
     if (ok) {
-      notify();
+      await changeUserInfo(phone, newPassword);
+      toast.success('정보를 수정하였습니다.');
       setTimeout(() => navigate('/mypage'), 2000);
+    } else {
+      toast.warn('비밀번호를 확인해 주세요.');
     }
   };
 
@@ -89,6 +76,18 @@ const UserInfo = (props: Props) => {
 
   return (
     <div className='w-[300px] m-auto'>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <form
         className='flex-col mt-8 text-center'
         onSubmit={handleSubmit(onSubmit)}
@@ -139,7 +138,6 @@ const UserInfo = (props: Props) => {
         <button type='submit' className='mwBtn !w-[300px] font-semibold mt-12'>
           회원 정보 변경
         </button>
-        <ToastContainer />
       </form>
     </div>
   );

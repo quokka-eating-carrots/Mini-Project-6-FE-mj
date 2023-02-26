@@ -1,9 +1,10 @@
-import React from 'react';
 import { usingList } from '../../../utils/infoData';
 import { useNavigate } from 'react-router';
+
 type props = {
   toggleMenu: () => void;
 };
+
 const Using = ({ toggleMenu }: props) => {
   const navigate = useNavigate();
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -9,9 +9,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutAction, autoCheck } from '../../../features/authSlice';
 import { logOut, getUserInfo, UserInfoType } from '../../../api/axios';
+
 interface props {
   toggleMenu(): void;
 }
+
 const ToggleHeader = (props: props) => {
   const [user, setUser] = useState<UserInfoType | null>(null);
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
@@ -44,6 +46,7 @@ const ToggleHeader = (props: props) => {
   const onClickDiv = () => {
     navigate('/mypage');
   };
+
   return isLogin ? (
     <div className='relative w-full h-full z-[1000] bg-mw'>
       <div className='w-full h-[240px] m-auto'>
@@ -53,7 +56,10 @@ const ToggleHeader = (props: props) => {
               size='32'
               color='#fff'
               onClick={() => {
-                logoutHandler(), logOut();
+                logoutHandler(),
+                  logOut(),
+                  props.toggleMenu(),
+                  location.reload();
               }}
             />
           </div>{' '}

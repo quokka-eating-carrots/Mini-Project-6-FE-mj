@@ -1,13 +1,10 @@
-import React from 'react';
 import GoodsList from '../../components/MainPage/GoodsList';
 import RecommendList from '../../components/MainPage/RecommendList';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { notify } from '../../utils/toasstify';
 
-type Props = {};
-
-const MainPage = (props: Props) => {
+const MainPage = () => {
   return (
     <div className='mx-[30px]'>
       <ToastContainer

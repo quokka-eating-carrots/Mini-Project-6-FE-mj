@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import LoanBox from '../../components/MyPage/LoanBox';
 import Slider from 'react-slick';
 import LikeBox from '../../components/MyPage/LikeBox';
@@ -14,9 +14,7 @@ import { autoCheck } from '../../features/authSlice';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {};
-
-const Mypage = (props: Props) => {
+const Mypage = () => {
   const [favor, setFavor] = useState<Array<FavorType>>([]);
   const [user, setUser] = useState<UserInfoType | null>(null);
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);

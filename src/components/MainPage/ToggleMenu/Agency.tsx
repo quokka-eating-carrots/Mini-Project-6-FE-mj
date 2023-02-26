@@ -1,6 +1,6 @@
-import React from 'react';
 import { agencyList } from '../../../utils/infoData';
 import { useNavigate } from 'react-router';
+
 type props = {
   toggleMenu: () => void;
 };
@@ -8,7 +8,7 @@ type props = {
 const Agency = ({ toggleMenu }: props) => {
   const navigate = useNavigate();
   return (
-    <div className='grid grid-cols-2 gap-2 w-[230px] gap-3'>
+    <div className='grid grid-cols-2 w-[230px] gap-3'>
       {agencyList.map((list) => {
         return (
           <div

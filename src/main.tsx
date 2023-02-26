@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';
 import { Provider } from 'react-redux';
 import { persistor, store } from './app/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loading from './pages/LoadingPage';
 import NotFound from './pages/NotFound';
-import { token } from './api/core/api';
 
 const App = React.lazy(() => import('./App'));
 const MainPage = React.lazy(() => import('./pages/MainPage'));
@@ -26,13 +24,6 @@ const AllProduct = React.lazy(() => import('./pages/allProduct'));
 const CategoryPage = React.lazy(() => import('./pages/CategoryPage'));
 const SearchPage = React.lazy(() => import('./pages/SearchPage'));
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: Infinity,
-    },
-  },
-});
 const router = createBrowserRouter([
   {
     path: '/',
@@ -96,13 +87,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <QueryClientProvider client={queryClient}>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <React.Suspense fallback={<Loading />}>
-          <RouterProvider router={router} />
-        </React.Suspense>
-      </PersistGate>
-    </Provider>
-  </QueryClientProvider>,
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <React.Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </React.Suspense>
+    </PersistGate>
+  </Provider>,
 );

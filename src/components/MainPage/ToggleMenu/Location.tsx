@@ -1,6 +1,6 @@
-import React from 'react';
 import { locationList } from '../../../utils/infoData';
 import { useNavigate } from 'react-router';
+
 type props = {
   toggleMenu: () => void;
 };

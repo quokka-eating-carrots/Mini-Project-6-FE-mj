@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import logo from '../../assets/008.png';
 import CartList from '../../components/CartNLikePage/CarList';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { autoCheck } from '../../features/authSlice';
 import useUserInfo from '../../hooks/useUserInfo';
-type Props = {};
 
-const CartNLikesPage = (props: Props) => {
+const CartNLikesPage = () => {
   const isLogin = useSelector((state: autoCheck) => state.auth.isAuthenticated);
   const user = useUserInfo();
 

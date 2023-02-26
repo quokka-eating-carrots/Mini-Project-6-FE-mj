@@ -1,8 +1,5 @@
-import React from 'react';
-
-type Props = {};
-
-const AccountDetail = (props: Props) => {
+// 데이터 없어서 하드 코딩으로 구현하였습니다.
+const AccountDetail = () => {
   return (
     <ul className='px-[20px]'>
       <li className='flex w-full flex-row items-center my-3'>

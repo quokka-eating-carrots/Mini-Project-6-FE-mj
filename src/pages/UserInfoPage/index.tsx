@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import UserDetail from '../../components/UserInfoPage/UserDetail';
 import UserInfo from '../../components/UserInfoPage/UserInfo';
 
-type Props = {};
-
-const UserInfoPage = (props: Props) => {
+const UserInfoPage = () => {
   const [menuChange, setMenuChange] = useState(false);
 
   const activeClassName = () => {
@@ -13,6 +11,7 @@ const UserInfoPage = (props: Props) => {
   const defaultClassName = () => {
     return 'cursor-pointer text-mw-gray font-bold hover:text-mw hover:border-b-4 hover:border-mw';
   };
+
   return (
     <div>
       <div className='flex gap-16 justify-center'>

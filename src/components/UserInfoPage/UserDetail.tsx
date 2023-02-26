@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   age,
@@ -18,9 +18,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {};
-
-const UserDetail = (props: Props) => {
+const UserDetail = () => {
   const [userDetailInfoData, setUserDetailInfoData] =
     useState<UserDetailInfoType>({
       age: '나이',
@@ -62,8 +60,7 @@ const UserDetail = (props: Props) => {
       crdtGrade,
       income,
     );
-    console.log('회원 정보 수정', userDetailInfoData);
-    console.log(job, age, address, bank, crdtGrade, income);
+
     if (ok) {
       notify();
       setTimeout(() => navigate('/mypage'), 2000);

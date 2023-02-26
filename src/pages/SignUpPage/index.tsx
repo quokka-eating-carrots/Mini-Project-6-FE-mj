@@ -4,12 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { signUp } from '../../api/axios';
 import { useAppDispatch } from '../../app/hooks';
-import { setUser } from '../../features/authSlice';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {};
-const notify = () => toast('Toastify Alert!');
 type IvalidationForm = {
   name: string;
   password: string;
@@ -17,9 +14,8 @@ type IvalidationForm = {
   phone: string;
 };
 
-const SignUpPage = (props: Props) => {
+const SignUpPage = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -56,7 +52,6 @@ const SignUpPage = (props: Props) => {
     const { email, password, name, phone } = data;
     const { ok, signData } = await signUp(name, password, email, phone);
     if (ok) {
-      dispatch(setUser(signData));
       const notify = () => toast.success(signData);
       notify();
       navigate('/signin');

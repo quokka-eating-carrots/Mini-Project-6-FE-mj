@@ -1,7 +1,6 @@
 import meewang3 from '../../assets/meewang3.png';
 
-interface Props {}
-const NotFound = (props: Props) => {
+const NotFound = () => {
   return (
     <div>
       <div className='font-bold text-lg text-alert w-full text-center'>

@@ -1,8 +1,5 @@
-import React from 'react';
-
-type Props = {};
-
-const AccountHistory = (props: Props) => {
+// 데이터 없어서 하드 코딩으로 구현하였습니다.
+const AccountHistory = () => {
   return (
     <div className='px-[20px] my-5'>
       <span>2023년 2월 14일</span>

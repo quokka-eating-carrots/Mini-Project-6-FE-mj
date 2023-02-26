@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AccountDetail from '../../components/UserLoan/AccountDetail';
 import AccountHistory from '../../components/UserLoan/AccountHistory';
 
-type Props = {};
-
-const UserLoanPage = (props: Props) => {
+// 데이터 없어서 하드 코딩으로 구현하였습니다.
+const UserLoanPage = () => {
   const [menuChange, setMenuChange] = useState(false);
   const activeClassName = () => {
     return 'cursor-pointer text-mw font-bold border-solid border-mw border-b-4 text-[18px]';

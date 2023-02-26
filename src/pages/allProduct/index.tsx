@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ListBox from '../../components/MainPage/ListBox';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { CategoryData, getAllList } from '../../api/axios';
 import Pagination from 'react-js-pagination';
 import '../../assets/paging.css';
 import { notify } from '../../utils/toasstify';
 import { ToastContainer } from 'react-toastify';
 
-type props = {};
-const allProduct = (props: props) => {
+const allProduct = () => {
   const [lists, setlists] = useState<Array<CategoryData>>([]);
   const [page, setpage] = useState(1);
   const handlePageChange = (page: number) => {

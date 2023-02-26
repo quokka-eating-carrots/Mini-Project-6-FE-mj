@@ -1,4 +1,5 @@
 import { LoanTypes } from '../../pages/ProductDetail/interface';
+
 const Loan = (props: { loanItem: LoanTypes }) => {
   return (
     <ul className='px-[20px]'>

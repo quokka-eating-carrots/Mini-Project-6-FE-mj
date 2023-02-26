@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ToggleHeader from './MainPage/ToggleMenu/ToggleHeader';
 
-type Props = {};
-
-const Header = (props: Props) => {
+const Header = () => {
   const [isOpen, setisOpen] = useState(false);
+
   const navigate = useNavigate();
+
   const toggleMenu = () => {
     setisOpen((isOpen) => !isOpen);
   };
+
   return (
     <div className='flex relative m-auto h-[100px] w-[375px] items-center justify-center'>
       <div

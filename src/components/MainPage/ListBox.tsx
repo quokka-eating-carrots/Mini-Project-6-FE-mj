@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect } from 'react';
 import { IoBookmarksOutline, IoCartOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { addCartList, addFavor } from '../../api/axios';
+import { addFavor } from '../../api/axios';
 import useAddCart from '../../hooks/useAddCart';
+
 type props = {
   snq: string | number;
   title: string;
@@ -12,6 +11,7 @@ type props = {
   baseRate: string;
   notify: (page: string, state: boolean) => void;
 };
+
 const ListBox = (props: props) => {
   let description = props.desc;
   let replaceDesc = description.replace('<br/>/g', '');

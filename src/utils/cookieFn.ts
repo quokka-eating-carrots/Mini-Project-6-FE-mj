@@ -9,5 +9,4 @@ export const getCookie = (key: string) => {
 
 export const deleteCookie = (key: string) => {
   document.cookie = `${key}=;max-age=0`;
-  console.log('complete');
 };

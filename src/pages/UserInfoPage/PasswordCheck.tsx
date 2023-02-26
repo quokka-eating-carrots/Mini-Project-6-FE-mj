@@ -1,4 +1,3 @@
-import React from 'react';
 import { checkUser } from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -7,13 +6,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {};
-
 interface IvalidationForm {
   password: string;
 }
 
-const PasswordCheck = (props: Props) => {
+const PasswordCheck = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: FieldValues) => {

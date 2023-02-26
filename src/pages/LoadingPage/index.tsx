@@ -1,12 +1,9 @@
-import React from 'react';
 import loading1 from '../../assets/loading/loading1.svg';
 import loading2 from '../../assets/loading/loading2.svg';
 import loading3 from '../../assets/loading/loading3.svg';
 import loading4 from '../../assets/loading/loading4.svg';
 
-type Props = {};
-
-const Loading = (props: Props) => {
+const Loading = () => {
   return (
     <div
       className='absolute top-0 left-0 flex flex-col justify-center items-center h-screen w-screen bg-center bg-no-repeat bg-cover'

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Slick from '../../slider/slick';
 import {
   memberRecommend,
@@ -7,7 +7,6 @@ import {
 } from '../../api/axios';
 import { autoCheck } from '../../features/authSlice';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import SlickItem from '../../slider/SlickItem';
 import useUserInfo from '../../hooks/useUserInfo';
 
@@ -18,7 +17,6 @@ const RecommendList = (props: props) => {
   const [memberlists, setmemberlists] = useState<ProductData>();
   const [nomemberlists, setnomemberlists] = useState<ProductData>();
   const user = useUserInfo();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLogin) {

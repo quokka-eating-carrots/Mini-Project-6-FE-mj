@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FavorType, deleteFavor } from '../../api/axios';
 
@@ -9,6 +8,7 @@ type Props = {
 
 const LikeBox = ({ item, handler }: Props) => {
   const navigate = useNavigate();
+
   const deleteBtnHandler = () => {
     deleteFavor(item.snq);
     handler();

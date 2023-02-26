@@ -53,6 +53,7 @@ export interface UserDetailInfoType {
   income: string;
   job: string;
 }
+
 // 상품리스트 정보
 export interface getProductType {
   snq: string;
@@ -62,16 +63,20 @@ export interface getProductType {
   baseRate: string;
   rate: string;
 }
+
+// 상품리스트 정보
 export interface ProductList {
   content: getProductType[];
   productData: getProductType[];
 }
 
+// 추천 상품 리스트 정보
 export interface ProductData {
   recommend: ProductList;
   recommendData: ProductList;
 }
 
+// 카테고리별 정보
 export interface CategoryData {
   page: number;
   baseRate: string;
@@ -132,7 +137,10 @@ export const signIn = async (email: string, password: string) => {
     };
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.message);
+      return {
+        ok: false,
+        signData: error?.response?.data,
+      };
     }
     return {
       ok: false,
@@ -151,9 +159,6 @@ export const logOut = async () => {
       checkData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -186,9 +191,6 @@ export const changeUserDetailInfo = async (
       userDetailInfoData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -209,9 +211,6 @@ export const checkUser = async (password: string) => {
       checkData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -229,9 +228,6 @@ export const getUserInfo = async () => {
       userInfoData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -249,9 +245,6 @@ export const getUserDetailInfo = async () => {
       userDetailInfoData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -273,9 +266,6 @@ export const changeUserInfo = async (phone: string, password: string) => {
       changeUserInfoData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -284,13 +274,19 @@ export const changeUserInfo = async (phone: string, password: string) => {
 
 // 관심 상품 조회
 export const getFavor = async () => {
-  const res = await request('/mypage/favor', {
-    method: 'GET',
-  });
-  return {
-    ok: true,
-    favorData: res.data,
-  };
+  try {
+    const res = await request('/mypage/favor', {
+      method: 'GET',
+    });
+    return {
+      ok: true,
+      favorData: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+    };
+  }
 };
 
 // 관심 상품 추가
@@ -307,9 +303,6 @@ export const addFavor = async (snq: string | number) => {
       favorData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -318,16 +311,22 @@ export const addFavor = async (snq: string | number) => {
 
 // 관심 상품 삭제
 export const deleteFavor = async (snq: string | number) => {
-  const res = await request('/favor', {
-    method: 'DELETE',
-    data: {
-      snq,
-    },
-  });
-  return {
-    ok: true,
-    favorData: res.data,
-  };
+  try {
+    const res = await request('/favor', {
+      method: 'DELETE',
+      data: {
+        snq,
+      },
+    });
+    return {
+      ok: true,
+      favorData: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+    };
+  }
 };
 
 // 장바구니 추가
@@ -344,9 +343,6 @@ export const addCartList = async (snq: string | number) => {
       cartData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -355,27 +351,39 @@ export const addCartList = async (snq: string | number) => {
 
 // 장바구니 조회
 export const getCartList = async () => {
-  const res = await request('/mypage/cart', {
-    method: 'get',
-  });
-  return {
-    ok: true,
-    cartData: res.data,
-  };
+  try {
+    const res = await request('/mypage/cart', {
+      method: 'get',
+    });
+    return {
+      ok: true,
+      cartData: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+    };
+  }
 };
 
 // 장바구니 삭제
 export const deleteCart = async (snq: number) => {
-  const res = await request('/cart', {
-    method: 'DELETE',
-    data: {
-      snq,
-    },
-  });
-  return {
-    ok: true,
-    data: res.data,
-  };
+  try {
+    const res = await request('/cart', {
+      method: 'DELETE',
+      data: {
+        snq,
+      },
+    });
+    return {
+      ok: true,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+    };
+  }
 };
 // 상세 정보
 export const getProductDetail = async (snq: number | string) => {
@@ -388,9 +396,6 @@ export const getProductDetail = async (snq: number | string) => {
       productDetailData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -408,9 +413,6 @@ export const getProduct = async (): Promise<any> => {
       productData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -428,9 +430,6 @@ export const memberRecommend = async (): Promise<any> => {
       recommendData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -447,9 +446,6 @@ export const nomemberRecommend = async (): Promise<any> => {
       recommend: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -474,9 +470,6 @@ export const getCategoryList = async (
       categoryData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
       categoryData: null,
@@ -498,9 +491,6 @@ export const getKeywordSearch = async (keyword: string, page = 1) => {
       searchData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };
@@ -518,9 +508,6 @@ export const getAllList = async (page: number) => {
       allData: res.data,
     };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      console.log(error.message);
-    }
     return {
       ok: false,
     };

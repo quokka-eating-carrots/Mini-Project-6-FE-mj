@@ -1,9 +1,10 @@
-import React from 'react';
 import { targetList } from '../../../utils/infoData';
 import { useNavigate } from 'react-router';
+
 type props = {
   toggleMenu: () => void;
 };
+
 const Target = ({ toggleMenu }: props) => {
   const navigate = useNavigate();
   return (

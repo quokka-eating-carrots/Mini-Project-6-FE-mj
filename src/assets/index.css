@@ -49,14 +49,6 @@
   border-radius: 30px;
 }
 
-/* .test-css li.slick-active button {
-  content: '';
-  width: 25px;
-  background-color: #000;
-  border-radius: 30px;
-  box-sizing: border-box;
-  margin: 0 4px;
-} */
 .test-css li.slick-active button:before {
   content: '';
   width: 10px;

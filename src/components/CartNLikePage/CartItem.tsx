@@ -1,5 +1,4 @@
 import { CartType } from '../../api/axios';
-import InfoSelect from '../InfoSelect';
 
 type CartItemProps = {
   onClick: () => void;

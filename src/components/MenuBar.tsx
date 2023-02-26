@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   IoBookmarksOutline,
   IoCartOutline,
@@ -10,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const MenuBar = () => {
   const navigate = useNavigate();
   return (
-    <div className='w-[350px] h-[80px] bg-white shadow-default rounded-[40px] flex justify-center items-center gap-5 fixed bottom-[30px] !z-50 left-[12px]'>
+    <div className='w-[350px] h-[80px] bg-white shadow-default rounded-[40px] flex justify-center items-center gap-5 fixed bottom-[30px] !z-50 left-[50%] translate-x-[-50%]'>
       <div
         onClick={() => navigate('/')}
         className='flex flex-col items-center cursor-pointer'
